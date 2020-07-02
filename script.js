@@ -1,6 +1,8 @@
 var apiKey = '0c8fc80ce5b237fd93f2c417b34dced5';
 var today = moment().format('l');
 
+current(localStorage.getItem('lastName'));
+
 $('#search').on('click', function() {
    event.preventDefault();
 
@@ -10,8 +12,7 @@ $('#search').on('click', function() {
    
    var city = $('#cityInput').val();
    current(city);
-
-});
+}); 
 
 function getUV(lat, lon) {
     var uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=' + apiKey + '&lat=' + lat + '&lon=' + lon;
@@ -39,8 +40,12 @@ function getUV(lat, lon) {
      });
 }
 
+var t = 0;
 
 function current(city) {
+    $('#current').html('');
+    $('#fiveDay').text('');
+    $('#future').html('');
     var currentURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
  
     $.ajax({
@@ -77,7 +82,29 @@ function current(city) {
          getUV(lati, long);
 
          future(lati, long);
+
+         localStorage.setItem('lastName', cityName);
+
+            var pastSearch = $('<li class="list-group-item list-group-item-action" id="' + t + '">'+ cityName + '</li>');
+            $('#pastCity').append(pastSearch);
+    
+    
+            $('#' + t).on('click', function() {
+                event.preventDefault();
+
+                $('#current').html('');
+                $('#fiveDay').text('');
+                $('#future').html('');
+    
+                var oldCity = $(this).text();
+                current(oldCity);
+    
+                $('#current').html('');
+                $('#fiveDay').text('');
+                $('#future').html('');
+            });
      });
+     t++;
 }
 
 function future(lat, lon) {
