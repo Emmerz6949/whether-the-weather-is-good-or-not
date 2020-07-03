@@ -1,3 +1,4 @@
+/*styles the whole pge so that everything fits on the page without a left - right scrollbar*/
 body {
     width: 100%;
     margin: 0px;
@@ -5,6 +6,7 @@ body {
     overflow-x: hidden; 
 }
 
+/*styles the aside to the left of the page*/
 aside {
     margin-right: 0px;
     clear: both;
@@ -13,6 +15,7 @@ aside {
     height: 100%;
 }
 
+/*styles the main to the right of the page*/
 main {
     padding: 0px;
     width: 73%;

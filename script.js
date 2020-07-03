@@ -1,19 +1,27 @@
+//my openweathermap api key
 var apiKey = '0c8fc80ce5b237fd93f2c417b34dced5';
+//today's date in the m/d/yyyy format
 var today = moment().format('l');
 
+//calls the last searhed city results
 current(localStorage.getItem('lastName'));
 
+//adds click event to the search button
 $('#search').on('click', function() {
    event.preventDefault();
 
+   //clears the previous search results if there are any
    $('#current').html('');
    $('#fiveDay').text('');
    $('#future').html('');
    
+   //assigns the input city to the variable city
    var city = $('#cityInput').val();
+   //calls the current function which displays the search results
    current(city);
 }); 
 
+//gets the UV index of the city
 function getUV(lat, lon) {
     var uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=' + apiKey + '&lat=' + lat + '&lon=' + lon;
 
@@ -42,6 +50,7 @@ function getUV(lat, lon) {
 
 var t = 0;
 
+//displays the current results and updates the search history and calls the getUV and future functions
 function current(city) {
     $('#current').html('');
     $('#fiveDay').text('');
@@ -107,6 +116,7 @@ function current(city) {
      t++;
 }
 
+//displays the 5 days after the current day forecast
 function future(lat, lon) {
     var futureURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=current,minutely,hourly&appid=' + apiKey;
     var i = 1;
@@ -137,7 +147,7 @@ function future(lat, lon) {
              var futureIcon = $('<img src="' + futureSrc + '" alt="related weather icon"/>');
              $('.body-' + i).append(futureIcon);
      
-             var futureCardTemp = $('<p class="card-text">Temperature: ' + futureTemp + ' &#8457;</p>');
+             var futureCardTemp = $('<p class="card-text">Temp: ' + futureTemp + ' &#8457;</p>');
              $('.body-' + i).append(futureCardTemp);
      
              var futureCardHumid = $('<p class="card-text">Humidity: ' + futureHumid + '%</p>');
