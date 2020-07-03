@@ -23,7 +23,7 @@ $('#search').on('click', function() {
 
 //gets the UV index of the city
 function getUV(lat, lon) {
-    var uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=' + apiKey + '&lat=' + lat + '&lon=' + lon;
+    var uvURL = 'https://api.openweathermap.org/data/2.5/uvi?appid=' + apiKey + '&lat=' + lat + '&lon=' + lon;
 
     $.ajax({
         url: uvURL,
@@ -55,7 +55,7 @@ function current(city) {
     $('#current').html('');
     $('#fiveDay').text('');
     $('#future').html('');
-    var currentURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
+    var currentURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
  
     $.ajax({
      url: currentURL,
@@ -70,7 +70,7 @@ function current(city) {
          var lati = response.coord.lat;
          var long = response.coord.lon;
          var iconID = response.weather[0].icon;
-         var iconSrc = 'http://openweathermap.org/img/wn/' + iconID + '@2x.png';
+         var iconSrc = 'https://openweathermap.org/img/wn/' + iconID + '@2x.png';
  
          var cardBody = $('<div class="card-body" id="currentBody"></div>');
          $('#current').addClass('card');
@@ -129,7 +129,7 @@ function future(lat, lon) {
          $('#fiveDay').text('5-Day Forecast: ');
          for (i = 1; i < 6; i++) {
              var futureIconID = response.daily[i].weather[0].icon;
-             var futureSrc = 'http://openweathermap.org/img/wn/' + futureIconID + '@2x.png';
+             var futureSrc = 'https://openweathermap.org/img/wn/' + futureIconID + '@2x.png';
              var futureKelvin = response.daily[i].temp.day;
              var futureTemp = ((futureKelvin - 273.15) * 1.80 + 32).toFixed(2);
              var futureHumid = response.daily[i].humidity;
