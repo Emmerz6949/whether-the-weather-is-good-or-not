@@ -2,7 +2,7 @@
 
 ## Description
 
-This repostory was created so I could create a weather dashboard that will show the current weather, a 5 day forecast, and a list of previous searches. It also stores the last searched city in local storage so that when the user refreshes the page the search results of their last searched city are still there for them.
+This repository was created so I could create a weather dashboard that will show the current weather, a 5 day forecast, and a list of previous searches. It also stores the last searched city in local storage so that when the user refreshes the page the search results of their last searched city are still there for them.
 
 ![image](https://i.ibb.co/8gcx7g6/Weather-Dashboard.png)
 
